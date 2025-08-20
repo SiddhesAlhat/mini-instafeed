@@ -1,0 +1,42 @@
+.profile-container {
+  max-width: 400px;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  margin: 3rem auto;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+}
+
+.profile-container button {
+  padding: 0.6rem 1.4rem;
+  margin: 0.7rem auto 0.2rem auto;
+  border: none;
+  color: white;
+  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.profile-container button:hover { opacity: 0.9; }
+
+.profile-container textarea {
+  width: 98%;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ececec;
+  padding: 0.9rem;
+  margin: 1rem 0;
+  resize: none;
+}

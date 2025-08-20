@@ -1,0 +1,46 @@
+.post-form-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.09);
+}
+
+.post-form-container h2 {
+  color: #3897f0;
+  background: linear-gradient(to right,#f58529,#dd2a7b,#8134af,#515bd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.post-form-container input[type=file] {
+  display: block;
+  margin: 0.7rem auto 1.3rem auto;
+}
+
+.post-form-container textarea {
+  width: 95%;
+  border-radius: 7px;
+  border: 1px solid #ececec;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  resize: none;
+}
+
+.post-form-container button {
+  padding: 0.7rem 2rem;
+  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: opacity 0.2s;
+}
+
+.post-form-container button:hover { opacity: 0.9; }

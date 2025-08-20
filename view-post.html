@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>View Post</title>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="feed.css">
+</head>
+<body>
+<nav class="navbar">
+  <h2>MiniInsta</h2>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="create-post.html">Create</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</nav>
+<div class="container">
+  <div class="post-card">
+    <div class="post-header">
+      <img src="https://i.pravatar.cc/40" class="avatar">
+      <span class="username">john_doe</span>
+    </div>
+    <img src="https://source.unsplash.com/random/650x400" class="post-image">
+    <div class="post-actions">
+      <button class="like-btn" onclick="likePost(this)">❤️ Like</button>
+    </div>
+    <p class="likes-count">10 likes</p>
+    <p class="caption"><strong>john_doe</strong> Loving the summer vibes ☀️</p>
+    <div class="comments">
+      <p><strong>alice</strong> Nice pic!</p>
+      <p><strong>bob</strong> Love it 🔥</p>
+      <textarea class="comment-box" placeholder="Add a comment..."></textarea>
+      <button style="margin:1rem;">Send</button>
+    </div>
+  </div>
+</div>
+<script>
+function likePost(button) {
+  const likesText = button.closest('.post-card').querySelector('.likes-count');
+  let count = parseInt(likesText.innerText) || 0;
+  likesText.innerText = `${count + 1} likes`;
+}
+</script>
+</body>
+</html>
