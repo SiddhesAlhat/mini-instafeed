@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini InstaFeed</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <h2>CodeIn.</h2>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Profile</a>
+      <a href="#">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="post-card">
+      <div class="post-header">
+        <img src="siddhesh alhat.jpeg" alt="Profile" class="avatar">
+        <span class="username">siddhesh</span>
+      </div>
+      <img src="berserk wallpaper.jpg" class="post-image" alt="Post" />
+
+      <div class="post-actions">
+        <button onclick="likePost(this)">❤️ Like</button>
+        <button>💬 Comment</button>
+      </div>
+
+      <p class="likes-count">10 likes</p>
+      <p class="caption"><strong>Uday</strong> Loving the summer vibes ☀️</p>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <img src="siddhesh alhat.jpeg" alt="Profile" class="avatar">
+        <span class="username">siddhesh</span>
+      </div>
+      <img src="berserk wallpaper.jpg" class="post-image" alt="Post" />
+
+      <div class="post-actions">
+        <button onclick="likePost(this)">❤️ Like</button>
+        <button>💬 Comment</button>
+      </div>
+      
+      <p class="likes-count">10 likes</p>
+      <p class="caption"><strong>Uday</strong> Loving the summer vibes ☀️</p>
+    </div>
+    <!-- More posts can be added dynamically -->
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
