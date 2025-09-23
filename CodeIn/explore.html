@@ -24,15 +24,332 @@
     </nav>
   </aside>
   <main class="feed">
-    <h2 class="explore-head">Explore Popular Posts</h2>
-    <div class="explore-grid">
-      <img src="Screenshot 2025-08-20 051234.png" alt="Explore 1">
-      <img src="get.jpg" alt="Explore 2">
-      <img src="Screenshot 2025-08-20 050635.png" alt="Explore 3">
-      <img src="Screenshot 2025-08-20 050606.png" alt="Explore 4">
-      <img src="Screenshot 2025-08-20 050650.png" alt="Explore 5">
-      <img src="Screenshot 2025-08-20 051252.png" alt="Explore 6">
+    <h2 class="explore-head">Explore Trending Posts</h2>
+    
+    <!-- Featured Posts -->
+    <div class="featured-section">
+      <div class="card featured-card">
+        <div class="card-header">
+          <img src="siddhesh alhat.jpeg" class="card-avatar">
+          <div class="card-user">@siddartha_dev <span class="card-time">🔥 Trending</span></div>
+        </div>
+        <img src="get.jpg" class="card-img">
+        <div class="card-actions">
+          <button class="action-btn like-btn" onclick="toggleLike(this)">
+            <span class="btn-icon">❤️</span>
+            <span class="btn-text">Like</span>
+          </button>
+          <button class="action-btn comment-btn">
+            <span class="btn-icon">💬</span>
+            <span class="btn-text">Comment</span>
+          </button>
+          <button class="action-btn share-btn">
+            <span class="btn-icon">📤</span>
+            <span class="btn-text">Share</span>
+          </button>
+        </div>
+        <div class="card-caption">
+          <strong>@siddartha_dev</strong> Just built this amazing web app with glassmorphism design! 🚀 
+          The animations are so smooth. Check out the code on GitHub! 
+          #webdev #javascript #css #frontend #glassmorphism
+        </div>
+        <div class="card-stats">
+          <span class="likes-count">2.3k likes</span>
+          <span class="comments-count">156 comments</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explore Grid -->
+    <div class="explore-section">
+      <h3 class="section-title">Popular This Week</h3>
+      <div class="explore-grid">
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 051234.png" alt="Explore 1">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 1.2k</span>
+              <span>💬 89</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="get.jpg" alt="Explore 2">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 856</span>
+              <span>💬 67</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 050635.png" alt="Explore 3">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 2.1k</span>
+              <span>💬 134</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 050606.png" alt="Explore 4">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 743</span>
+              <span>💬 45</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 050650.png" alt="Explore 5">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 1.5k</span>
+              <span>💬 98</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 051252.png" alt="Explore 6">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 967</span>
+              <span>💬 72</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="get.jpg" alt="Explore 7">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 1.8k</span>
+              <span>💬 112</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 051234.png" alt="Explore 8">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 654</span>
+              <span>💬 38</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-item">
+          <img src="Screenshot 2025-08-20 050635.png" alt="Explore 9">
+          <div class="explore-overlay">
+            <div class="explore-stats">
+              <span>❤️ 1.3k</span>
+              <span>💬 87</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories-section">
+      <h3 class="section-title">Browse by Category</h3>
+      <div class="categories-grid">
+        <div class="category-item">
+          <div class="category-icon">💻</div>
+          <h4>Web Development</h4>
+          <p>2.3k posts</p>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">🎨</div>
+          <h4>UI/UX Design</h4>
+          <p>1.8k posts</p>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">📱</div>
+          <h4>Mobile Apps</h4>
+          <p>1.5k posts</p>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">🤖</div>
+          <h4>AI & Machine Learning</h4>
+          <p>967 posts</p>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">🔧</div>
+          <h4>DevOps</h4>
+          <p>743 posts</p>
+        </div>
+        <div class="category-item">
+          <div class="category-icon">🎮</div>
+          <h4>Game Development</h4>
+          <p>654 posts</p>
+        </div>
+      </div>
     </div>
   </main>
+
+  <script>
+    function toggleLike(button) {
+      const btnIcon = button.querySelector('.btn-icon');
+      const btnText = button.querySelector('.btn-text');
+      const card = button.closest('.card');
+      const likesCount = card.querySelector('.likes-count');
+      
+      if (button.classList.contains('liked')) {
+        button.classList.remove('liked');
+        btnIcon.textContent = '❤️';
+        btnText.textContent = 'Like';
+        // Update likes count
+        const currentCount = parseInt(likesCount.textContent.replace(/[^\d]/g, ''));
+        likesCount.textContent = (currentCount - 1).toLocaleString() + ' likes';
+      } else {
+        button.classList.add('liked');
+        btnIcon.textContent = '❤️';
+        btnText.textContent = 'Liked';
+        // Update likes count
+        const currentCount = parseInt(likesCount.textContent.replace(/[^\d]/g, ''));
+        likesCount.textContent = (currentCount + 1).toLocaleString() + ' likes';
+      }
+    }
+
+    // Add click handlers for explore items
+    document.querySelectorAll('.explore-item').forEach(item => {
+      item.addEventListener('click', function() {
+        // Simulate opening post detail
+        alert('Opening post details...');
+      });
+    });
+
+    // Add click handlers for categories
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', function() {
+        const categoryName = this.querySelector('h4').textContent;
+        alert(`Filtering posts by ${categoryName}...`);
+      });
+    });
+  </script>
+
+  <style>
+    .featured-section {
+      margin-bottom: 3rem;
+    }
+    
+    .featured-card {
+      background: var(--primary-gradient);
+      color: white;
+    }
+    
+    .featured-card .card-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .featured-card .card-user {
+      color: white;
+    }
+    
+    .explore-section, .categories-section {
+      margin-bottom: 3rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    
+    .explore-item {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .explore-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .explore-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .explore-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .explore-item:hover .explore-overlay {
+      opacity: 1;
+    }
+    
+    .explore-stats {
+      display: flex;
+      gap: 1rem;
+      color: white;
+      font-weight: 600;
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .category-item {
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .category-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-primary);
+      border-color: rgba(102, 126, 234, 0.5);
+    }
+    
+    .category-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .category-item h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .category-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
 </body>
 </html>

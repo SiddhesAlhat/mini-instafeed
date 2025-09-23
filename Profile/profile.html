@@ -2,24 +2,166 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Profile - MiniInsta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - CodeIn</title>
   <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 </head>
 <body>
-  <div class="profile-container">
-    <div class="profile-header">
-      <img src="default-avatar.png" id="profile-img" class="profile-avatar" alt="Profile Image"/>
-      <input type="file" id="img-upload" accept="image/*" style="display:none"/>
-      <button onclick="document.getElementById('img-upload').click()">Change Image</button>
-      <h2 id="profile-username">YourUsername</h2>
-      <p id="profile-email">you@email.com</p>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <h2>CodeIn</h2>
     </div>
-    <div class="profile-details">
-      <label>Bio:</label>
-      <textarea id="profile-bio" rows="3" placeholder="Write about yourself..."></textarea>
-      <button onclick="saveProfile()">Save</button>
+    <div class="nav-links">
+      <a href="../CodeIn/index.html">Home</a>
+      <a href="../CodeIn/explore.html">Explore</a>
+      <a href="../CodeIn/create-post.html">Create</a>
+      <a href="profile.html" class="active">Profile</a>
+    </div>
+  </nav>
+
+  <div class="profile-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-banner">
+        <div class="banner-overlay"></div>
+      </div>
+      <div class="profile-info">
+        <div class="avatar-section">
+          <img src="../CodeIn/siddhesh alhat.jpeg" id="profile-img" class="profile-avatar" alt="Profile Image"/>
+          <input type="file" id="img-upload" accept="image/*" style="display:none"/>
+          <button class="edit-avatar-btn" onclick="document.getElementById('img-upload').click()">
+            <span>📷</span>
+          </button>
+        </div>
+        <div class="profile-details">
+          <h1 id="profile-username">Siddartha</h1>
+          <p id="profile-email">siddartha@codein.dev</p>
+          <p id="profile-bio-text">Full Stack Developer | React & Node.js Enthusiast | Building the future with code 🚀</p>
+          <div class="profile-stats">
+            <div class="stat">
+              <span class="stat-number">42</span>
+              <span class="stat-label">Posts</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">1.2k</span>
+              <span class="stat-label">Followers</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">856</span>
+              <span class="stat-label">Following</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Edit Section -->
+    <div class="profile-edit-section">
+      <div class="edit-card">
+        <h3>Edit Profile</h3>
+        <form class="profile-form">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="profile-username-input" value="Siddartha" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="profile-email-input" value="siddartha@codein.dev" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea id="profile-bio" rows="3" placeholder="Tell us about yourself...">Full Stack Developer | React & Node.js Enthusiast | Building the future with code 🚀</textarea>
+          </div>
+          <div class="form-group">
+            <label>Skills</label>
+            <input type="text" id="profile-skills" value="JavaScript, React, Node.js, Python, CSS" placeholder="Enter your skills">
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="profile-location" value="Mumbai, India" placeholder="Enter your location">
+          </div>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Activity Feed -->
+      <div class="activity-card">
+        <h3>Recent Activity</h3>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-icon">📝</div>
+            <div class="activity-content">
+              <p>Posted a new project</p>
+              <span class="activity-time">2 hours ago</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">❤️</div>
+            <div class="activity-content">
+              <p>Liked Jay Chen's post</p>
+              <span class="activity-time">4 hours ago</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">💬</div>
+            <div class="activity-content">
+              <p>Commented on Sarah's code</p>
+              <span class="activity-time">6 hours ago</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon">👥</div>
+            <div class="activity-content">
+              <p>Started following @Alin_12</p>
+              <span class="activity-time">1 day ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="posts-section">
+      <h3>Your Posts</h3>
+      <div class="posts-grid">
+        <div class="post-item">
+          <img src="../CodeIn/get.jpg" alt="Post 1">
+          <div class="post-overlay">
+            <div class="post-stats">
+              <span>❤️ 42</span>
+              <span>💬 8</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-item">
+          <img src="../CodeIn/Every One Day Was New, Beginning And New Beginning was new Opportunities.. But That One Thing Is.jpg" alt="Post 2">
+          <div class="post-overlay">
+            <div class="post-stats">
+              <span>❤️ 127</span>
+              <span>💬 23</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-item">
+          <img src="../CodeIn/Screenshot 2025-08-20 051234.png" alt="Post 3">
+          <div class="post-overlay">
+            <div class="post-stats">
+              <span>❤️ 89</span>
+              <span>💬 15</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-item add-post">
+          <div class="add-post-content">
+            <span class="add-icon">➕</span>
+            <p>Add New Post</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <script src="profile.js"></script>
 </body>
 </html>

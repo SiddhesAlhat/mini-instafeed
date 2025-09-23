@@ -1,40 +1,352 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Profile</title>
-  <link rel="stylesheet" href="common.css">
-  <link rel="stylesheet" href="profile.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - CodeIn</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 </head>
 <body>
-<nav class="navbar">
-  <h2>CodeIn.</h2>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="create-post.html">Create</a>
-    <a href="profile.html">Profile</a>
-  </div>
-</nav>
-<div class="profile-container">
-  <img src="default-avatar.png" id="profile-img" class="profile-avatar">
-  <input type="file" id="img-upload" style="display:none"/>
-  <button onclick="document.getElementById('img-upload').click()">Change Image</button>
-  <h2>Your Name</h2>
-  <p>Email Here</p>
-  <textarea placeholder="Your bio..."></textarea>
-  <button>Save Profile</button>
-</div>
-<script>
-document.getElementById('img-upload')?.addEventListener('change', e => {
-  const file = e.target.files;
-  if (file && file[0]) {
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      document.getElementById('profile-img').src = ev.target.result;
+  <aside class="sidebar">
+    <div class="profile-block">
+      <img src="siddhesh alhat.jpeg" class="profile-pic" alt="User profile">
+      <div>
+        <div class="user-name">Siddartha</div>
+        <div class="user-sub">Full Stack Developer</div>
+      </div>
+    </div>
+    <nav class="nav-menu">
+      <a href="index.html"><span>🏠</span> Home</a>
+      <a href="explore.html"><span>🔎</span> Explore</a>
+      <a href="create-post.html"><span>➕</span> Create</a>
+      <a href="profile.html" class="active"><span>👤</span> Profile</a>
+      <a href="login.html"><span>⏻</span> Log Out</a>
+    </nav>
+  </aside>
+
+  <main class="feed">
+    <div class="card">
+      <div class="card-header">
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">Edit Profile <span class="card-time">Now</span></div>
+      </div>
+      <div class="profile-edit-content">
+        <div class="profile-section">
+          <div class="avatar-section">
+            <img src="siddhesh alhat.jpeg" id="profile-img" class="profile-avatar">
+            <input type="file" id="img-upload" accept="image/*" style="display:none"/>
+            <button class="edit-avatar-btn" onclick="document.getElementById('img-upload').click()">
+              <span>📷</span>
+            </button>
+          </div>
+          <div class="profile-info">
+            <h3>Siddartha</h3>
+            <p>siddartha@codein.dev</p>
+          </div>
+        </div>
+        
+        <form class="profile-form">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" value="Siddartha" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="siddartha@codein.dev" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea placeholder="Tell us about yourself...">Full Stack Developer | React & Node.js Enthusiast | Building the future with code 🚀</textarea>
+          </div>
+          <div class="form-group">
+            <label>Skills</label>
+            <input type="text" value="JavaScript, React, Node.js, Python, CSS" placeholder="Enter your skills">
+          </div>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">Your Posts <span class="card-time">Recent</span></div>
+      </div>
+      <div class="posts-grid">
+        <div class="post-item">
+          <img src="get.jpg" alt="Post 1">
+          <div class="post-overlay">
+            <div class="post-stats">
+              <span>❤️ 42</span>
+              <span>💬 8</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-item">
+          <img src="Every One Day Was New, Beginning And New Beginning was new Opportunities.. But That One Thing Is.jpg" alt="Post 2">
+          <div class="post-overlay">
+            <div class="post-stats">
+              <span>❤️ 127</span>
+              <span>💬 23</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-item add-post">
+          <div class="add-post-content">
+            <span class="add-icon">➕</span>
+            <p>Add New Post</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Image upload functionality
+    document.getElementById('img-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        if (!file.type.startsWith('image/')) {
+          alert('Please select an image file');
+          return;
+        }
+        
+        if (file.size > 5 * 1024 * 1024) {
+          alert('Image size should be less than 5MB');
+          return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          const img = document.getElementById('profile-img');
+          img.src = ev.target.result;
+          img.style.opacity = '0.5';
+          img.style.transform = 'scale(0.95)';
+          
+          setTimeout(() => {
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1)';
+            img.style.transition = 'all 0.3s ease';
+          }, 300);
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Profile form submission
+    document.querySelector('.profile-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const saveBtn = document.querySelector('.save-btn');
+      const originalText = saveBtn.textContent;
+      saveBtn.textContent = 'Saving...';
+      saveBtn.disabled = true;
+      
+      setTimeout(() => {
+        saveBtn.textContent = 'Saved!';
+        saveBtn.style.background = 'var(--success-gradient)';
+        
+        setTimeout(() => {
+          saveBtn.textContent = originalText;
+          saveBtn.disabled = false;
+          saveBtn.style.background = 'var(--primary-gradient)';
+        }, 2000);
+      }, 1500);
+    });
+
+    // Add post functionality
+    document.querySelector('.add-post').addEventListener('click', function() {
+      window.location.href = 'create-post.html';
+    });
+  </script>
+
+  <style>
+    .profile-edit-content {
+      padding: 2rem;
     }
-    reader.readAsDataURL(file);
-  }
-});
-</script>
+    
+    .profile-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .avatar-section {
+      position: relative;
+    }
+    
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid transparent;
+      background: var(--primary-gradient);
+      padding: 2px;
+    }
+    
+    .edit-avatar-btn {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .profile-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .profile-info p {
+      color: var(--text-muted);
+    }
+    
+    .profile-form {
+      display: grid;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: rgba(102, 126, 234, 0.6);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .save-btn {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+    }
+    
+    .post-item {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .post-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .post-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .post-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .post-item:hover .post-overlay {
+      opacity: 1;
+    }
+    
+    .post-stats {
+      display: flex;
+      gap: 1rem;
+      color: white;
+      font-weight: 600;
+    }
+    
+    .add-post {
+      background: var(--bg-card);
+      border: 2px dashed var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .add-post-content {
+      text-align: center;
+      color: var(--text-secondary);
+    }
+    
+    .add-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .add-post:hover {
+      border-color: rgba(102, 126, 234, 0.6);
+      background: rgba(102, 126, 234, 0.1);
+    }
+  </style>
 </body>
 </html>

@@ -1,23 +1,95 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
-  <link rel="stylesheet" href="common.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - CodeIn</title>
   <link rel="stylesheet" href="auth.css">
 </head>
 <body>
 <div class="auth-container">
-  <h2>Create Your Account</h2>
+  <h2>Join CodeIn</h2>
+  <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Start your coding journey with the community</p>
   <form>
     <input type="text" placeholder="Username" required>
-    <input type="email" placeholder="Email" required>
+    <input type="email" placeholder="Email Address" required>
     <input type="password" placeholder="Password" required>
     <input type="password" placeholder="Confirm Password" required>
-    <button type="submit">Register</button>
-    <p>Already have an account? <a href="login.html">Login</a></p>
+    
+    <div style="margin: 1rem 0; text-align: left;">
+      <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); cursor: pointer;">
+        <input type="checkbox" style="margin: 0;">
+        I agree to the <a href="#" style="color: var(--accent-gradient);">Terms of Service</a>
+      </label>
+    </div>
+    
+    <button type="submit">Create Account</button>
+    <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+      <p>Already have an account? <a href="login.html">Sign In</a></p>
+    </div>
   </form>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const inputs = document.querySelectorAll('input');
+    const passwordInput = inputs[2];
+    const confirmPasswordInput = inputs[3];
+    
+    // Password validation
+    function validatePasswords() {
+      if (passwordInput.value !== confirmPasswordInput.value && confirmPasswordInput.value !== '') {
+        confirmPasswordInput.style.borderColor = '#ff6b6b';
+        confirmPasswordInput.style.boxShadow = '0 0 0 3px rgba(255, 107, 107, 0.1)';
+      } else {
+        confirmPasswordInput.style.borderColor = 'var(--border-color)';
+        confirmPasswordInput.style.boxShadow = 'none';
+      }
+    }
+    
+    confirmPasswordInput.addEventListener('input', validatePasswords);
+    passwordInput.addEventListener('input', validatePasswords);
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Validate passwords match
+      if (passwordInput.value !== confirmPasswordInput.value) {
+        alert('Passwords do not match!');
+        return;
+      }
+      
+      // Add loading state
+      const button = form.querySelector('button');
+      const originalText = button.textContent;
+      button.textContent = 'Creating Account...';
+      button.disabled = true;
+      
+      // Simulate registration process
+      setTimeout(() => {
+        button.textContent = 'Success!';
+        button.style.background = 'var(--success-gradient)';
+        
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1000);
+      }, 2000);
+    });
+    
+    // Add focus animations
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.style.transform = 'translateY(-2px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  });
+</script>
 </body>
 </html>

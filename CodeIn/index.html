@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CodeIn. - Home</title>
   <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 </head>
 <body>
   <aside class="sidebar">
@@ -12,43 +13,180 @@
       <img src="siddhesh alhat.jpeg" class="profile-pic" alt="User profile">
       <div>
         <div class="user-name">Siddartha</div>
-        <div class="user-sub">Inprogress...</div>
+        <div class="user-sub">Full Stack Developer</div>
       </div>
     </div>
     <nav class="nav-menu">
-      <a href="index.html"><span>🏠</span> Home</a>
+      <a href="index.html" class="active"><span>🏠</span> Home</a>
       <a href="explore.html"><span>🔎</span> Explore</a>
-      <a href="#"><span>💬</span> Messages</a>
-      <a href="#"><span>👤</span> Profile</a>
+      <a href="create-post.html"><span>➕</span> Create</a>
+      <a href="profile.html"><span>👤</span> Profile</a>
       <a href="login.html"><span>⏻</span> Log Out</a>
     </nav>
   </aside>
   <main class="feed">
-    <!--Cart one-->
+    <!-- Welcome Card -->
+    <div class="card welcome-card">
+      <div class="card-header">
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">Welcome to CodeIn! <span class="card-time">Now</span></div>
+      </div>
+      <div class="welcome-content">
+        <h3>🚀 Ready to Code?</h3>
+        <p>Share your coding journey, connect with developers, and explore amazing projects from the community!</p>
+        <div class="action-buttons">
+          <button class="btn-primary">Create Post</button>
+          <button class="btn-secondary">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Card 1 -->
     <div class="card">
       <div class="card-header">
         <img src="siddhesh alhat.jpeg" class="card-avatar">
-        <div class="card-user">Siddartha</div>
+        <div class="card-user">Siddartha <span class="card-time">2h</span></div>
       </div>
       <img src="get.jpg" class="card-img">
-      <div class="card-caption">Caption text…</div>
+      <div class="card-actions">
+        <button class="action-btn like-btn" onclick="toggleLike(this)">
+          <span class="btn-icon">❤️</span>
+          <span class="btn-text">Like</span>
+        </button>
+        <button class="action-btn comment-btn">
+          <span class="btn-icon">💬</span>
+          <span class="btn-text">Comment</span>
+        </button>
+        <button class="action-btn share-btn">
+          <span class="btn-icon">📤</span>
+          <span class="btn-text">Share</span>
+        </button>
+      </div>
+      <div class="card-caption">
+        <strong>Siddartha</strong> Just finished building this amazing web app! 🎉 
+        The glassmorphism design really brings it to life. What do you think? 
+        #webdev #javascript #css #frontend
+      </div>
+      <div class="card-stats">
+        <span class="likes-count">42 likes</span>
+        <span class="comments-count">8 comments</span>
+      </div>
     </div>
+
+    <!-- Post Card 2 -->
     <div class="card">
       <div class="card-header">
         <img src="siddhesh alhat.jpeg" class="card-avatar">
-        <div class="card-user">username <span class="card-time">2h</span></div>
+        <div class="card-user">Alex Chen <span class="card-time">4h</span></div>
       </div>
       <img src="Every One Day Was New, Beginning And New Beginning was new Opportunities.. But That One Thing Is.jpg" class="card-img">
-      <div class="card-caption">Caption text…</div>
+      <div class="card-actions">
+        <button class="action-btn like-btn" onclick="toggleLike(this)">
+          <span class="btn-icon">❤️</span>
+          <span class="btn-text">Like</span>
+        </button>
+        <button class="action-btn comment-btn">
+          <span class="btn-icon">💬</span>
+          <span class="btn-text">Comment</span>
+        </button>
+        <button class="action-btn share-btn">
+          <span class="btn-icon">📤</span>
+          <span class="btn-text">Share</span>
+        </button>
+      </div>
+      <div class="card-caption">
+        <strong>Alex Chen</strong> Every new day brings new opportunities! 🌅 
+        Starting a fresh project today. The possibilities are endless when you're passionate about coding. 
+        #motivation #coding #newbeginnings #opportunities
+      </div>
+      <div class="card-stats">
+        <span class="likes-count">127 likes</span>
+        <span class="comments-count">23 comments</span>
+      </div>
     </div>
+
+    <!-- Post Card 3 -->
     <div class="card">
       <div class="card-header">
-        <img src="pic3.jpg" class="card-avatar">
-        <div class="card-user">username <span class="card-time">2h</span></div>
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">Sarah Kim <span class="card-time">6h</span></div>
       </div>
-      <img src="feed3.jpg" class="card-img">
-      <div class="card-caption">Caption text…</div>
+      <div class="code-snippet">
+        <div class="code-header">
+          <span class="language-tag">JavaScript</span>
+          <button class="copy-btn">📋 Copy</button>
+        </div>
+        <pre><code>// Beautiful gradient animation
+const createGradient = () => {
+  return `linear-gradient(135deg, 
+    ${colors.primary} 0%, 
+    ${colors.secondary} 100%)`;
+};
+
+// Apply with smooth transition
+element.style.background = createGradient();
+element.style.transition = 'all 0.3s ease';</code></pre>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn like-btn" onclick="toggleLike(this)">
+          <span class="btn-icon">❤️</span>
+          <span class="btn-text">Like</span>
+        </button>
+        <button class="action-btn comment-btn">
+          <span class="btn-icon">💬</span>
+          <span class="btn-text">Comment</span>
+        </button>
+        <button class="action-btn share-btn">
+          <span class="btn-icon">📤</span>
+          <span class="btn-text">Share</span>
+        </button>
+      </div>
+      <div class="card-caption">
+        <strong>Sarah Kim</strong> Just learned this cool trick for creating dynamic gradients! 
+        The CSS transition makes it so smooth. Perfect for modern UI designs! 
+        #javascript #css #webdev #animation
+      </div>
+      <div class="card-stats">
+        <span class="likes-count">89 likes</span>
+        <span class="comments-count">15 comments</span>
+      </div>
     </div>
   </main>
+
+  <script>
+    function toggleLike(button) {
+      const btnIcon = button.querySelector('.btn-icon');
+      const btnText = button.querySelector('.btn-text');
+      const card = button.closest('.card');
+      const likesCount = card.querySelector('.likes-count');
+      
+      if (button.classList.contains('liked')) {
+        button.classList.remove('liked');
+        btnIcon.textContent = '❤️';
+        btnText.textContent = 'Like';
+        likesCount.textContent = (parseInt(likesCount.textContent) - 1) + ' likes';
+      } else {
+        button.classList.add('liked');
+        btnIcon.textContent = '❤️';
+        btnText.textContent = 'Liked';
+        likesCount.textContent = (parseInt(likesCount.textContent) + 1) + ' likes';
+      }
+    }
+
+    // Add smooth scroll behavior
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add loading animation to cards
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'all 0.6s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+    });
+  </script>
 </body>
 </html>

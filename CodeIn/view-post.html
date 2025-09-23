@@ -1,46 +1,505 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>View Post</title>
-  <link rel="stylesheet" href="common.css">
-  <link rel="stylesheet" href="feed.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Post - CodeIn</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 </head>
 <body>
-<nav class="navbar">
-  <h2>MiniInsta</h2>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="create-post.html">Create</a>
-    <a href="profile.html">Profile</a>
-  </div>
-</nav>
-<div class="container">
-  <div class="post-card">
-    <div class="post-header">
-      <img src="https://i.pravatar.cc/40" class="avatar">
-      <span class="username">john_doe</span>
+  <aside class="sidebar">
+    <div class="profile-block">
+      <img src="siddhesh alhat.jpeg" class="profile-pic" alt="User profile">
+      <div>
+        <div class="user-name">Siddartha</div>
+        <div class="user-sub">Full Stack Developer</div>
+      </div>
     </div>
-    <img src="https://source.unsplash.com/random/650x400" class="post-image">
-    <div class="post-actions">
-      <button class="like-btn" onclick="likePost(this)">❤️ Like</button>
+    <nav class="nav-menu">
+      <a href="index.html"><span>🏠</span> Home</a>
+      <a href="explore.html"><span>🔎</span> Explore</a>
+      <a href="create-post.html"><span>➕</span> Create</a>
+      <a href="profile.html"><span>👤</span> Profile</a>
+      <a href="login.html"><span>⏻</span> Log Out</a>
+    </nav>
+  </aside>
+
+  <main class="feed">
+    <div class="card post-detail">
+      <div class="card-header">
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">@siddartha_dev <span class="card-time">2h</span></div>
+        <div class="post-menu">
+          <button class="menu-btn">⋯</button>
+        </div>
+      </div>
+      
+      <img src="get.jpg" class="card-img">
+      
+      <div class="card-actions">
+        <button class="action-btn like-btn" onclick="toggleLike(this)">
+          <span class="btn-icon">❤️</span>
+          <span class="btn-text">Like</span>
+        </button>
+        <button class="action-btn comment-btn" onclick="focusComment()">
+          <span class="btn-icon">💬</span>
+          <span class="btn-text">Comment</span>
+        </button>
+        <button class="action-btn share-btn">
+          <span class="btn-icon">📤</span>
+          <span class="btn-text">Share</span>
+        </button>
+        <button class="action-btn bookmark-btn">
+          <span class="btn-icon">🔖</span>
+          <span class="btn-text">Save</span>
+        </button>
+      </div>
+      
+      <div class="card-stats">
+        <span class="likes-count">2.3k likes</span>
+        <span class="comments-count">156 comments</span>
+      </div>
+      
+      <div class="card-caption">
+        <strong>@siddartha_dev</strong> Just built this amazing web app with glassmorphism design! 🚀 
+        The animations are so smooth and the user experience is incredible. 
+        Check out the code on GitHub and let me know what you think! 
+        #webdev #javascript #css #frontend #glassmorphism #ui #ux
+      </div>
+      
+      <div class="comments-section">
+        <div class="comments-list">
+          <div class="comment">
+            <img src="siddhesh alhat.jpeg" class="comment-avatar">
+            <div class="comment-content">
+              <div class="comment-header">
+                <strong>@alex_chen</strong>
+                <span class="comment-time">1h</span>
+              </div>
+              <p>This is absolutely stunning! 🔥 The glassmorphism effect is so clean. How did you achieve those smooth transitions?</p>
+              <div class="comment-actions">
+                <button class="comment-like-btn" onclick="likeComment(this)">❤️ 12</button>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="comment">
+            <img src="siddhesh alhat.jpeg" class="comment-avatar">
+            <div class="comment-content">
+              <div class="comment-header">
+                <strong>@sarah_ui</strong>
+                <span class="comment-time">45m</span>
+              </div>
+              <p>Amazing work! 💯 The color scheme is perfect. Would love to see a tutorial on this!</p>
+              <div class="comment-actions">
+                <button class="comment-like-btn" onclick="likeComment(this)">❤️ 8</button>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="comment">
+            <img src="siddhesh alhat.jpeg" class="comment-avatar">
+            <div class="comment-content">
+              <div class="comment-header">
+                <strong>@webdev_master</strong>
+                <span class="comment-time">30m</span>
+              </div>
+              <p>Incredible attention to detail! The hover effects are so smooth. Great job! 👏</p>
+              <div class="comment-actions">
+                <button class="comment-like-btn" onclick="likeComment(this)">❤️ 15</button>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="add-comment">
+          <img src="siddhesh alhat.jpeg" class="comment-avatar">
+          <div class="comment-input-container">
+            <textarea 
+              id="comment-input" 
+              class="comment-input" 
+              placeholder="Add a comment..."
+              rows="1"
+            ></textarea>
+            <button class="post-comment-btn" onclick="postComment()">Post</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="likes-count">10 likes</p>
-    <p class="caption"><strong>john_doe</strong> Loving the summer vibes ☀️</p>
-    <div class="comments">
-      <p><strong>alice</strong> Nice pic!</p>
-      <p><strong>bob</strong> Love it 🔥</p>
-      <textarea class="comment-box" placeholder="Add a comment..."></textarea>
-      <button style="margin:1rem;">Send</button>
+
+    <!-- Related Posts -->
+    <div class="related-posts">
+      <h3>More from @siddartha_dev</h3>
+      <div class="related-grid">
+        <div class="related-item">
+          <img src="Screenshot 2025-08-20 051234.png" alt="Related Post">
+          <div class="related-overlay">
+            <span>❤️ 856</span>
+          </div>
+        </div>
+        <div class="related-item">
+          <img src="Screenshot 2025-08-20 050635.png" alt="Related Post">
+          <div class="related-overlay">
+            <span>❤️ 1.2k</span>
+          </div>
+        </div>
+        <div class="related-item">
+          <img src="Screenshot 2025-08-20 050606.png" alt="Related Post">
+          <div class="related-overlay">
+            <span>❤️ 743</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<script>
-function likePost(button) {
-  const likesText = button.closest('.post-card').querySelector('.likes-count');
-  let count = parseInt(likesText.innerText) || 0;
-  likesText.innerText = `${count + 1} likes`;
-}
-</script>
+  </main>
+
+  <script>
+    function toggleLike(button) {
+      const btnIcon = button.querySelector('.btn-icon');
+      const btnText = button.querySelector('.btn-text');
+      const card = button.closest('.card');
+      const likesCount = card.querySelector('.likes-count');
+      
+      if (button.classList.contains('liked')) {
+        button.classList.remove('liked');
+        btnIcon.textContent = '❤️';
+        btnText.textContent = 'Like';
+        // Update likes count
+        const currentCount = parseInt(likesCount.textContent.replace(/[^\d]/g, ''));
+        likesCount.textContent = (currentCount - 1).toLocaleString() + ' likes';
+      } else {
+        button.classList.add('liked');
+        btnIcon.textContent = '❤️';
+        btnText.textContent = 'Liked';
+        // Update likes count
+        const currentCount = parseInt(likesCount.textContent.replace(/[^\d]/g, ''));
+        likesCount.textContent = (currentCount + 1).toLocaleString() + ' likes';
+      }
+    }
+
+    function likeComment(button) {
+      const currentLikes = parseInt(button.textContent.replace(/[^\d]/g, ''));
+      button.textContent = `❤️ ${currentLikes + 1}`;
+      button.style.color = '#ff6b6b';
+      
+      setTimeout(() => {
+        button.style.color = 'var(--text-muted)';
+      }, 1000);
+    }
+
+    function focusComment() {
+      document.getElementById('comment-input').focus();
+    }
+
+    function postComment() {
+      const commentInput = document.getElementById('comment-input');
+      const commentText = commentInput.value.trim();
+      
+      if (commentText) {
+        // Create new comment element
+        const commentsList = document.querySelector('.comments-list');
+        const newComment = document.createElement('div');
+        newComment.className = 'comment';
+        newComment.innerHTML = `
+          <img src="siddhesh alhat.jpeg" class="comment-avatar">
+          <div class="comment-content">
+            <div class="comment-header">
+              <strong>@siddartha</strong>
+              <span class="comment-time">now</span>
+            </div>
+            <p>${commentText}</p>
+            <div class="comment-actions">
+              <button class="comment-like-btn" onclick="likeComment(this)">❤️ 0</button>
+              <button class="reply-btn">Reply</button>
+            </div>
+          </div>
+        `;
+        
+        commentsList.appendChild(newComment);
+        commentInput.value = '';
+        
+        // Update comments count
+        const commentsCount = document.querySelector('.comments-count');
+        const currentCount = parseInt(commentsCount.textContent.replace(/[^\d]/g, ''));
+        commentsCount.textContent = (currentCount + 1) + ' comments';
+        
+        // Scroll to new comment
+        newComment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // Auto-resize comment textarea
+    const commentInput = document.getElementById('comment-input');
+    commentInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+
+    // Add click handlers for related posts
+    document.querySelectorAll('.related-item').forEach(item => {
+      item.addEventListener('click', function() {
+        alert('Opening related post...');
+      });
+    });
+
+    // Add keyboard shortcut for posting comment
+    commentInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        postComment();
+      }
+    });
+  </script>
+
+  <style>
+    .post-detail {
+      margin-bottom: 3rem;
+    }
+    
+    .post-menu {
+      margin-left: auto;
+    }
+    
+    .menu-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .menu-btn:hover {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+    
+    .bookmark-btn {
+      margin-left: auto;
+    }
+    
+    .comments-section {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+    
+    .comments-list {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+    }
+    
+    .comment {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+    }
+    
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid transparent;
+      background: var(--primary-gradient);
+      padding: 1px;
+    }
+    
+    .comment-content {
+      flex: 1;
+    }
+    
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-header strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    
+    .comment-time {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .comment-content p {
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    
+    .comment-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .comment-like-btn,
+    .reply-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+    
+    .comment-like-btn:hover,
+    .reply-btn:hover {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    
+    .add-comment {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-end;
+      padding: 1rem;
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+    }
+    
+    .comment-input-container {
+      flex: 1;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+    
+    .comment-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      resize: none;
+      max-height: 100px;
+      min-height: 20px;
+    }
+    
+    .comment-input:focus {
+      outline: none;
+    }
+    
+    .comment-input::placeholder {
+      color: var(--text-muted);
+    }
+    
+    .post-comment-btn {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .post-comment-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .related-posts {
+      margin-top: 2rem;
+    }
+    
+    .related-posts h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    
+    .related-item {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .related-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .related-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .related-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .related-item:hover .related-overlay {
+      opacity: 1;
+    }
+    
+    .related-overlay span {
+      color: white;
+      font-weight: 600;
+    }
+    
+    /* Scrollbar styling */
+    .comments-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .comments-list::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 3px;
+    }
+    
+    .comments-list::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 3px;
+    }
+    
+    .comments-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(102, 126, 234, 0.6);
+    }
+  </style>
 </body>
 </html>

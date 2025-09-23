@@ -1,26 +1,597 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Create Post</title>
-  <link rel="stylesheet" href="common.css">
-  <link rel="stylesheet" href="post.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Post - CodeIn</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 </head>
 <body>
-<nav class="navbar">
-  <h2>MiniInsta</h2>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="create-post.html">Create</a>
-    <a href="profile.html">Profile</a>
+  <aside class="sidebar">
+    <div class="profile-block">
+      <img src="siddhesh alhat.jpeg" class="profile-pic" alt="User profile">
+      <div>
+        <div class="user-name">Siddartha</div>
+        <div class="user-sub">Full Stack Developer</div>
+      </div>
   </div>
+    <nav class="nav-menu">
+      <a href="index.html"><span>🏠</span> Home</a>
+      <a href="explore.html"><span>🔎</span> Explore</a>
+      <a href="create-post.html" class="active"><span>➕</span> Create</a>
+      <a href="profile.html"><span>👤</span> Profile</a>
+      <a href="login.html"><span>⏻</span> Log Out</a>
 </nav>
-<div class="post-form-container">
-  <h2>Create a New Post</h2>
-  <input type="file" id="post-img" accept="image/*">
-  <textarea placeholder="Write a caption..."></textarea>
-  <button>Post</button>
+  </aside>
+
+  <main class="feed">
+    <div class="card">
+      <div class="card-header">
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">Create New Post <span class="card-time">Now</span></div>
+      </div>
+      
+      <div class="create-post-content">
+        <!-- Image Upload Section -->
+        <div class="upload-section">
+          <div class="upload-area" id="upload-area">
+            <div class="upload-icon">📷</div>
+            <h3>Choose Image or Drag & Drop</h3>
+            <p>Upload a photo to share with the community</p>
+            <input type="file" id="post-img" accept="image/*" style="display:none">
+            <button class="upload-btn" onclick="document.getElementById('post-img').click()">
+              Choose File
+            </button>
+          </div>
+          
+          <div class="image-preview" id="image-preview" style="display:none">
+            <img id="preview-img" src="" alt="Preview">
+            <button class="remove-image-btn" onclick="removeImage()">✕</button>
+          </div>
+        </div>
+
+        <!-- Post Form -->
+        <form class="post-form">
+          <div class="form-group">
+            <label>Caption</label>
+            <textarea id="post-caption" placeholder="What's on your mind? Share your coding journey, tips, or ask for help..." rows="4"></textarea>
+            <div class="char-count">
+              <span id="char-count">0</span>/500
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Tags</label>
+            <input type="text" id="post-tags" placeholder="#webdev #javascript #css #frontend">
+            <small>Separate tags with spaces. Use # for hashtags</small>
+          </div>
+
+          <div class="form-group">
+            <label>Code Snippet (Optional)</label>
+            <div class="code-input">
+              <select id="code-language">
+                <option value="">Select Language</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="css">CSS</option>
+                <option value="html">HTML</option>
+                <option value="react">React</option>
+                <option value="nodejs">Node.js</option>
+              </select>
+              <textarea id="code-snippet" placeholder="Paste your code here..." rows="6"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Visibility</label>
+            <div class="visibility-options">
+              <label class="radio-option">
+                <input type="radio" name="visibility" value="public" checked>
+                <span class="radio-custom"></span>
+                <div>
+                  <strong>Public</strong>
+                  <small>Everyone can see this post</small>
+                </div>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="visibility" value="followers">
+                <span class="radio-custom"></span>
+                <div>
+                  <strong>Followers Only</strong>
+                  <small>Only your followers can see this</small>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="post-actions">
+            <button type="button" class="btn-secondary" onclick="saveDraft()">Save Draft</button>
+            <button type="submit" class="btn-primary" id="post-btn">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preview Card -->
+    <div class="card" id="preview-card" style="display:none">
+      <div class="card-header">
+        <img src="siddhesh alhat.jpeg" class="card-avatar">
+        <div class="card-user">Preview <span class="card-time">Now</span></div>
+      </div>
+      <img id="preview-post-img" src="" class="card-img" style="display:none">
+      
+      <div class="code-preview" id="code-preview" style="display:none">
+        <div class="code-header">
+          <span class="language-tag" id="preview-language"></span>
+          <button class="copy-btn">📋 Copy</button>
+        </div>
+        <pre><code id="preview-code"></code></pre>
+      </div>
+      
+      <div class="card-caption" id="preview-caption"></div>
+      <div class="card-stats">
+        <span class="likes-count">0 likes</span>
+        <span class="comments-count">0 comments</span>
+      </div>
 </div>
+  </main>
+
+  <script>
+    // Image upload functionality
+    const uploadArea = document.getElementById('upload-area');
+    const postImg = document.getElementById('post-img');
+    const imagePreview = document.getElementById('image-preview');
+    const previewImg = document.getElementById('preview-img');
+    const previewPostImg = document.getElementById('preview-post-img');
+
+    // Drag and drop functionality
+    uploadArea.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      uploadArea.classList.add('drag-over');
+    });
+
+    uploadArea.addEventListener('dragleave', function(e) {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+    });
+
+    uploadArea.addEventListener('drop', function(e) {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+      
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        handleImageUpload(files[0]);
+      }
+    });
+
+    postImg.addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        handleImageUpload(e.target.files[0]);
+      }
+    });
+
+    function handleImageUpload(file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file');
+        return;
+      }
+      
+      if (file.size > 10 * 1024 * 1024) {
+        alert('Image size should be less than 10MB');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+        previewPostImg.src = e.target.result;
+        uploadArea.style.display = 'none';
+        imagePreview.style.display = 'block';
+        updatePreview();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeImage() {
+      uploadArea.style.display = 'block';
+      imagePreview.style.display = 'none';
+      previewPostImg.style.display = 'none';
+      postImg.value = '';
+      updatePreview();
+    }
+
+    // Character count for caption
+    const captionTextarea = document.getElementById('post-caption');
+    const charCount = document.getElementById('char-count');
+
+    captionTextarea.addEventListener('input', function() {
+      const count = this.value.length;
+      charCount.textContent = count;
+      
+      if (count > 500) {
+        charCount.style.color = '#ff6b6b';
+        this.style.borderColor = '#ff6b6b';
+      } else {
+        charCount.style.color = 'var(--text-muted)';
+        this.style.borderColor = 'var(--border-color)';
+      }
+      
+      updatePreview();
+    });
+
+    // Update preview in real-time
+    function updatePreview() {
+      const caption = document.getElementById('post-caption').value;
+      const tags = document.getElementById('post-tags').value;
+      const codeSnippet = document.getElementById('code-snippet').value;
+      const codeLanguage = document.getElementById('code-language').value;
+      
+      const previewCard = document.getElementById('preview-card');
+      const previewCaption = document.getElementById('preview-caption');
+      const codePreview = document.getElementById('code-preview');
+      const previewCode = document.getElementById('preview-code');
+      const previewLanguage = document.getElementById('preview-language');
+      
+      if (caption || tags || codeSnippet) {
+        previewCard.style.display = 'block';
+        
+        // Update caption
+        if (caption || tags) {
+          previewCaption.innerHTML = `<strong>Siddartha</strong> ${caption} ${tags}`;
+        }
+        
+        // Update code preview
+        if (codeSnippet && codeLanguage) {
+          codePreview.style.display = 'block';
+          previewCode.textContent = codeSnippet;
+          previewLanguage.textContent = codeLanguage;
+        } else {
+          codePreview.style.display = 'none';
+        }
+        
+        // Show/hide image preview
+        if (previewImg.src) {
+          previewPostImg.style.display = 'block';
+        }
+      } else {
+        previewCard.style.display = 'none';
+      }
+    }
+
+    // Add event listeners for real-time preview
+    document.getElementById('post-tags').addEventListener('input', updatePreview);
+    document.getElementById('code-snippet').addEventListener('input', updatePreview);
+    document.getElementById('code-language').addEventListener('change', updatePreview);
+
+    // Form submission
+    document.querySelector('.post-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const postBtn = document.getElementById('post-btn');
+      const originalText = postBtn.textContent;
+      postBtn.textContent = 'Posting...';
+      postBtn.disabled = true;
+      
+      setTimeout(() => {
+        postBtn.textContent = 'Posted!';
+        postBtn.style.background = 'var(--success-gradient)';
+        
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      }, 2000);
+    });
+
+    function saveDraft() {
+      alert('Draft saved successfully!');
+    }
+  </script>
+
+  <style>
+    .create-post-content {
+      padding: 2rem;
+    }
+    
+    .upload-section {
+      margin-bottom: 2rem;
+    }
+    
+    .upload-area {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      text-align: center;
+      background: var(--bg-card);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    .upload-area:hover,
+    .upload-area.drag-over {
+      border-color: rgba(102, 126, 234, 0.6);
+      background: rgba(102, 126, 234, 0.05);
+    }
+    
+    .upload-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .upload-area h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .upload-area p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    
+    .upload-btn {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .upload-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .image-preview {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .image-preview img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+    
+    .remove-image-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .post-form {
+      display: grid;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: rgba(102, 126, 234, 0.6);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .char-count {
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .form-group small {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    
+    .code-input {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .code-input select {
+      padding: 0.8rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      color: var(--text-primary);
+    }
+    
+    .code-input textarea {
+      font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .visibility-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .radio-option:hover {
+      background: rgba(102, 126, 234, 0.05);
+    }
+    
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+    
+    .radio-custom {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .radio-option input[type="radio"]:checked + .radio-custom {
+      border-color: rgba(102, 126, 234, 0.8);
+    }
+    
+    .radio-option input[type="radio"]:checked + .radio-custom::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+    }
+    
+    .radio-option div strong {
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    
+    .radio-option div small {
+      color: var(--text-muted);
+    }
+    
+    .post-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-primary);
+    }
+    
+    .code-preview {
+      background: var(--bg-tertiary);
+      border-radius: var(--border-radius);
+      margin: 1rem 0;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+    
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .language-tag {
+      background: var(--accent-gradient);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .copy-btn:hover {
+      background: var(--primary-gradient);
+      color: white;
+      border-color: transparent;
+    }
+    
+    .code-preview pre {
+      margin: 0;
+      padding: 1rem;
+      overflow-x: auto;
+      background: transparent;
+    }
+    
+    .code-preview code {
+      color: var(--text-primary);
+      font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  </style>
 </body>
 </html>
